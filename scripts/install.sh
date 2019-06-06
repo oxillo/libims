@@ -15,6 +15,10 @@
 # File: install.sh
 # Brief: Install project using CMake
 
+PLATFORM_OS=`uname -s`
+if [[ ${PLATFORM_OS} == "MINGW32"* ]]; then export OS=Mingw32; fi
+if [[ ${PLATFORM_OS} == "MINGW64"* ]]; then export OS=Mingw64; fi
+
 echo "## INSTALL"
 
 PROGRAM=${0}
@@ -86,22 +90,20 @@ fi
 
 # Preconfigure
 DIRECTORIES=($(pwd)/../build 
-$(pwd)/../build/doc 
-$(pwd)/../build/Linux 
-$(pwd)/../build/Linux/i686 
-$(pwd)/../build/Linux/x86_64 
+$(pwd)/../build/doc
+$(pwd)/../build/${OS}/i686
+$(pwd)/../build/${OS}/x86_64
 $(pwd)/../install 
-$(pwd)/../install/doc 
-$(pwd)/../install/Linux 
-$(pwd)/../install/Linux/i686 
-$(pwd)/../install/Linux/x86_64)
+$(pwd)/../install/doc
+$(pwd)/../install/${OS}/i686
+$(pwd)/../install/${OS}/x86_64)
 for d in ${DIRECTORIES[*]}
 do
     DIRECTORY=${d}
     if [ ! -d ${DIRECTORY} ]
     then
         echo "# CREATE [${DIRECTORY}]"
-        mkdir ${DIRECTORY}
+        mkdir -p ${DIRECTORY}
     else
         echo "# EXISTS [${DIRECTORY}]"
     fi
@@ -143,6 +145,7 @@ export arg="-DCMAKE_BUILD_TYPE=${BUILD_TYPE}
                       
 if [[ "${ENABLE_STEP}" == "1" ]]; then read -p "Press any key to continue..."; fi
 cmake ${_ROOT} -G"Ninja" ${arg} 
+#cmake ${_ROOT} -G"Unix Makefiles" ${arg}
 
 # Build
 echo "## CMAKE BUILD"
