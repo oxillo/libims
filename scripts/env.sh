@@ -73,40 +73,53 @@ if [[ -z ${IOLAND_ROOT} ]]; then export IOLAND_ROOT=/home/ioland/REF; fi
 if [[ -z ${CROSSTOOLS_ROOT} ]]; then export CROSSTOOLS_ROOT=/home/CrossTools; fi
 
 # CMAKE
-if [[ -z ${CMAKE_BIN} ]]; then export CMAKE_BIN=${IOLAND_ROOT}/COTS/CMAKE/V3.9.6/BINARIES/Linux/bin; fi
-echo "# CMAKE BIN [${CMAKE_BIN}]"
-export PATH=${CMAKE_BIN}:${PATH}
-export LD_LIBRARY_PATH=${CMAKE_BIN}:${LD_LIBRARY_PATH}
+if [ x`command -v cmake` = x ]; then
+	if [[ -z ${CMAKE_BIN} ]]; then export CMAKE_BIN=${IOLAND_ROOT}/COTS/CMAKE/V3.9.6/BINARIES/Linux/bin; fi
+	echo "# CMAKE BIN [${CMAKE_BIN}]"
+	export PATH=${CMAKE_BIN}:${PATH}
+	export LD_LIBRARY_PATH=${CMAKE_BIN}:${LD_LIBRARY_PATH}
+fi
+
 
 # NINJA
-if [[ -z ${NINJA_BIN} ]]; then export NINJA_BIN=${IOLAND_ROOT}/COTS/NINJA/V1.8.2/BINARIES/Linux; fi
-echo "# NINJA BIN [${NINJA_BIN}]"
-export PATH=${NINJA_BIN}:${PATH}
-export LD_LIBRARY_PATH=${NINJA_BIN}:${LD_LIBRARY_PATH}
+if [ x`command -v ninja` = x ]; then
+	if [[ -z ${NINJA_BIN} ]]; then export NINJA_BIN=${IOLAND_ROOT}/COTS/NINJA/V1.8.2/BINARIES/Linux; fi
+	echo "# NINJA BIN [${NINJA_BIN}]"
+	export PATH=${NINJA_BIN}:${PATH}
+	export LD_LIBRARY_PATH=${NINJA_BIN}:${LD_LIBRARY_PATH}
+fi
 
 # DOXYGEN
-if [[ -z ${DOXYGEN_BIN} ]]; then export DOXYGEN_BIN=${IOLAND_ROOT}/COTS/DOXYGEN/V1.8.11/BINARIES/Linux/bin; fi
-echo "# DOXYGEN BIN [${DOXYGEN_BIN}]"
-export PATH=${DOXYGEN_BIN}:${PATH}
-export LD_LIBRARY_PATH=${DOXYGEN_BIN}:${LD_LIBRARY_PATH}
+if [ x`command -v doxygen` = x ]; then
+	if [[ -z ${DOXYGEN_BIN} ]]; then export DOXYGEN_BIN=${IOLAND_ROOT}/COTS/DOXYGEN/V1.8.11/BINARIES/Linux/bin; fi
+	echo "# DOXYGEN BIN [${DOXYGEN_BIN}]"
+	export PATH=${DOXYGEN_BIN}:${PATH}
+	export LD_LIBRARY_PATH=${DOXYGEN_BIN}:${LD_LIBRARY_PATH}
+fi
 
 # GRAPHVIZ
-if [[ -z ${GRAPHVIZ_BIN} ]]; then export GRAPHVIZ_BIN=${IOLAND_ROOT}/COTS/GRAPHVIZ/graphviz-2.26.3-1/BINARIES/Linux/bin; fi
-echo "# GRAPHVIZ BIN [${GRAPHVIZ_BIN}]"
-export PATH=${GRAPHVIZ_BIN}:${PATH}
-export LD_LIBRARY_PATH=${GRAPHVIZ_BIN}:${LD_LIBRARY_PATH}
+if [ x`command -v dot` = x ]; then
+	if [[ -z ${GRAPHVIZ_BIN} ]]; then export GRAPHVIZ_BIN=${IOLAND_ROOT}/COTS/GRAPHVIZ/graphviz-2.26.3-1/BINARIES/Linux/bin; fi
+	echo "# GRAPHVIZ BIN [${GRAPHVIZ_BIN}]"
+	export PATH=${GRAPHVIZ_BIN}:${PATH}
+	export LD_LIBRARY_PATH=${GRAPHVIZ_BIN}:${LD_LIBRARY_PATH}
+fi
 
 # ASCIIDOCTOR
-if [[ -z ${ASCIIDOCTOR_BIN} ]]; then export ASCIIDOCTOR_BIN=${IOLAND_ROOT}/COTS/ASCIIDOCTORSTACK/V2.0.0/install/linux/bin; fi
-echo "# ASCIIDOCTOR BIN [${ASCIIDOCTOR_BIN}]"
-export PATH=${ASCIIDOCTOR_BIN}:${PATH}
-export LD_LIBRARY_PATH=${ASCIIDOCTOR_BIN}:${LD_LIBRARY_PATH}
+if [ x`command -v asciidoctor` = x ]; then
+	if [[ -z ${ASCIIDOCTOR_BIN} ]]; then export ASCIIDOCTOR_BIN=${IOLAND_ROOT}/COTS/ASCIIDOCTORSTACK/V2.0.0/install/linux/bin; fi
+	echo "# ASCIIDOCTOR BIN [${ASCIIDOCTOR_BIN}]"
+	export PATH=${ASCIIDOCTOR_BIN}:${PATH}
+	export LD_LIBRARY_PATH=${ASCIIDOCTOR_BIN}:${LD_LIBRARY_PATH}
+fi
 
 # LCOV
-if [[ -z ${LCOV_BIN} ]]; then export LCOV_BIN=${IOLAND_ROOT}/../REF/COTS/LCOV/V1.13.0/BINARIES/Linux64/bin; fi
-echo "# LCOV BIN [${LCOV_BIN}]"
-export PATH=${LCOV_BIN}:${PATH}
-export LD_LIBRARY_PATH=${LCOV_BIN}:${LD_LIBRARY_PATH}
+if [ x`command -v lcov` = x ]; then
+	if [[ -z ${LCOV_BIN} ]]; then export LCOV_BIN=${IOLAND_ROOT}/../REF/COTS/LCOV/V1.13.0/BINARIES/Linux64/bin; fi
+	echo "# LCOV BIN [${LCOV_BIN}]"
+	export PATH=${LCOV_BIN}:${PATH}
+	export LD_LIBRARY_PATH=${LCOV_BIN}:${LD_LIBRARY_PATH}
+fi
 
 # LIBXML2
 if [[ "${WORDSIZE}" == "i686" ]];
