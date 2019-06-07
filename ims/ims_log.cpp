@@ -16,6 +16,7 @@
 #include <fstream>
 #include <stdlib.h>
 #include <iomanip>
+#include <chrono>
 
 #include <sys/time.h>
 
@@ -82,14 +83,49 @@ std::ostream& backend_stream()
 //
 void backend_log_date()
 {
+
   struct timeval tv;
   struct tm s_tm;
   gettimeofday(&tv, NULL);
+  
+  #ifndef __MINGW32__ || __MINGW64__
   // with mingw, we need to convert tv_sec (a long) to localtime_r (a long long)
   time_t converted_time = tv.tv_sec;
   localtime_r(&converted_time, &s_tm);
   
   *backend << std::setfill('0') << std::setw(2) << s_tm.tm_hour << ":" << std::setfill('0') << std::setw(2) << s_tm.tm_min << ":" << std::setfill('0') << std::setw(2) << s_tm.tm_sec << "," << std::setfill('0') << std::setw(6) << tv.tv_usec << " : " ;
+  #else
+  std::chrono::system_clock::time_point now = std::chrono::system_clock::now();
+  std::time_t now_c = std::chrono::system_clock::to_time_t(now - std::chrono::hours(24));
+  *backend << std::put_time(std::localtime(&now_c), "%T,") << std::setfill('0') << std::setw(6) << tv.tv_usec << " : " ;
+  /* std::chrono::system_clock::time_point now = std::chrono::system_clock::now();
+  auto start = std::chrono::high_resolution_clock::now();
+  std::time_t now_c = std::chrono::system_clock::to_time_t(now);
+  *backend << std::put_time(std::localtime(&now_c), "%T,"); 
+  std::chrono::time_point< std::chrono::system_clock > now = std::chrono::system_clock::now();
+  std::chrono::time_point< std::chrono::system_clock, date::days> tp{};
+  auto duration = now.time_since_epoch();
+
+  typedef std::chrono::duration< int, std::ratio_multiply< std::chrono::hours::period, std::ratio< 21 > >::type > Days;
+
+  Days days = std::chrono::duration_cast< Days >( duration );
+  duration -= days;
+
+  auto hours = std::chrono::duration_cast< std::chrono::hours >( duration );
+  duration -= hours;
+
+  auto minutes = std::chrono::duration_cast< std::chrono::minutes >( duration );
+  duration -= minutes;
+
+  auto seconds = std::chrono::duration_cast< std::chrono::seconds >( duration );
+  duration -= seconds;
+
+  auto milliseconds = std::chrono::duration_cast< std::chrono::milliseconds >( duration );
+  duration -= milliseconds;
+
+  auto microseconds = std::chrono::duration_cast< std::chrono::microseconds >( duration );
+  duration -= microseconds;*/
+  #endif
 }
 
 //
