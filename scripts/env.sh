@@ -85,7 +85,7 @@ fi
 if [ x`command -v ninja` = x ]; then
 	if [[ -z ${NINJA_BIN} ]]; then export NINJA_BIN=${IOLAND_ROOT}/COTS/NINJA/V1.8.2/BINARIES/Linux; fi
 	echo "# NINJA BIN [${NINJA_BIN}]"
-	export PATH=${NINJA_BIN}:${PATH}
+	#export PATH=${NINJA_BIN}:${PATH}
 	export LD_LIBRARY_PATH=${NINJA_BIN}:${LD_LIBRARY_PATH}
 fi
 
@@ -93,7 +93,7 @@ fi
 if [ x`command -v doxygen` = x ]; then
 	if [[ -z ${DOXYGEN_BIN} ]]; then export DOXYGEN_BIN=${IOLAND_ROOT}/COTS/DOXYGEN/V1.8.11/BINARIES/Linux/bin; fi
 	echo "# DOXYGEN BIN [${DOXYGEN_BIN}]"
-	export PATH=${DOXYGEN_BIN}:${PATH}
+	#export PATH=${DOXYGEN_BIN}:${PATH}
 	export LD_LIBRARY_PATH=${DOXYGEN_BIN}:${LD_LIBRARY_PATH}
 fi
 
@@ -101,7 +101,7 @@ fi
 if [ x`command -v dot` = x ]; then
 	if [[ -z ${GRAPHVIZ_BIN} ]]; then export GRAPHVIZ_BIN=${IOLAND_ROOT}/COTS/GRAPHVIZ/graphviz-2.26.3-1/BINARIES/Linux/bin; fi
 	echo "# GRAPHVIZ BIN [${GRAPHVIZ_BIN}]"
-	export PATH=${GRAPHVIZ_BIN}:${PATH}
+	#export PATH=${GRAPHVIZ_BIN}:${PATH}
 	export LD_LIBRARY_PATH=${GRAPHVIZ_BIN}:${LD_LIBRARY_PATH}
 fi
 
@@ -109,7 +109,7 @@ fi
 if [ x`command -v asciidoctor` = x ]; then
 	if [[ -z ${ASCIIDOCTOR_BIN} ]]; then export ASCIIDOCTOR_BIN=${IOLAND_ROOT}/COTS/ASCIIDOCTORSTACK/V2.0.0/install/linux/bin; fi
 	echo "# ASCIIDOCTOR BIN [${ASCIIDOCTOR_BIN}]"
-	export PATH=${ASCIIDOCTOR_BIN}:${PATH}
+	#export PATH=${ASCIIDOCTOR_BIN}:${PATH}
 	export LD_LIBRARY_PATH=${ASCIIDOCTOR_BIN}:${LD_LIBRARY_PATH}
 fi
 
@@ -117,7 +117,7 @@ fi
 if [ x`command -v lcov` = x ]; then
 	if [[ -z ${LCOV_BIN} ]]; then export LCOV_BIN=${IOLAND_ROOT}/../REF/COTS/LCOV/V1.13.0/BINARIES/Linux64/bin; fi
 	echo "# LCOV BIN [${LCOV_BIN}]"
-	export PATH=${LCOV_BIN}:${PATH}
+	#export PATH=${LCOV_BIN}:${PATH}
 	export LD_LIBRARY_PATH=${LCOV_BIN}:${LD_LIBRARY_PATH}
 fi
 
@@ -134,8 +134,8 @@ if [[ -z ${LIBXML2_LIB} ]]; then export LIBXML2_LIB=${LIBXML2_ROOT}/lib; fi
 echo "# LIBXML2 BIN [${LIBXML2_BIN}]"
 echo "# LIBXML2 INC [${LIBXML2_INC}]"
 echo "# LIBXML2 LIB [${LIBXML2_LIB}]"
-export PATH=${LIBXML2_BIN}:${LIBXML2_INC}:${LIBXML2_LIB}:${PATH}
-export LD_LIBRARY_PATH=${LIBXML2_BIN}:${LIBXML2_INC}:${LIBXML2_LIB}:${LD_LIBRARY_PATH}
+#export PATH=${LIBXML2_BIN}:${LIBXML2_INC}:${LIBXML2_LIB}:${PATH}
+#export LD_LIBRARY_PATH=${LIBXML2_BIN}:${LIBXML2_INC}:${LIBXML2_LIB}:${LD_LIBRARY_PATH}
 
 # BUILD DIRECTORY
 if [[ -z ${BUILD_PATH} ]]; then export BUILD_PATH=${_ROOT}/build/${OS}/${WORDSIZE}; fi
