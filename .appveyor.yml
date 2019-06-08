@@ -30,7 +30,7 @@ init:
 # fix for https://github.com/appveyor/ci/issues/2571
 #- del C:\Windows\System32\libssl-*.dll C:\Windows\system32\libcrypto-*.dll
 #- del C:\Windows\SysWOW64\libssl-*.dll C:\Windows\SysWOW64\libcrypto-*.dll
-#- set MSYS2_PATH=c:\msys64
+- set MSYS2_PATH=c:\msys64
 - set CHERE_INVOKING=1
 #- if "%BUILDER%_%PLATFORM%"=="MSYS2_x86" set MSYSTEM=MINGW32
 #- if "%BUILDER%_%PLATFORM%"=="MSYS2_x64" set MSYSTEM=MINGW64
