@@ -49,12 +49,13 @@ install:
 #- if "%BUILDER%"=="MSYS2" (%MSYS2_PATH%\usr\bin\bash -lc "cd scripts && ./install.sh")
 
 before_build:
-- ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+
 #- if "%BUILDER%"=="MSYS2" (%MSYS2_PATH%\usr\bin\bash -lc "ccache -z")
 #- if "%BUILDER%"=="MSYS2" (%MSYS2_PATH%\usr\bin\bash -lc "ccache -s")
 
 build_script:
 - if "%BUILDER%"=="MSYS2" (%MSYS2_PATH%\usr\bin\bash -lc "cd scripts && ./install.sh")
+- ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
 
 - ps: |
 #    if ($env:BUILDER -eq "VS") {
