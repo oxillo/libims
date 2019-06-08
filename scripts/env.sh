@@ -117,7 +117,7 @@ fi
 if [ x`command -v lcov` = x ]; then
 	if [[ -z ${LCOV_BIN} ]]; then export LCOV_BIN=${IOLAND_ROOT}/../REF/COTS/LCOV/V1.13.0/BINARIES/Linux64/bin; fi
 	echo "# LCOV BIN [${LCOV_BIN}]"
-	export PATH=${LCOV_BIN}:${PATH}
+	#export PATH=${LCOV_BIN}:${PATH}
 	export LD_LIBRARY_PATH=${LCOV_BIN}:${LD_LIBRARY_PATH}
 fi
 
