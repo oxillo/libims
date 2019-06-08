@@ -19,7 +19,7 @@ PLATFORM_OS=`uname -s`
 if [[ ${PLATFORM_OS} == "MINGW32"* ]]; then export OS=Mingw32; fi
 if [[ ${PLATFORM_OS} == "MINGW64"* ]]; then export OS=Mingw64; fi
 
-echo "## INSTALL"
+echo "## INSTALL on ${PLATFORM_OS}"
 
 PROGRAM=${0}
 function usage {
@@ -145,6 +145,7 @@ export arg="-DCMAKE_BUILD_TYPE=${BUILD_TYPE}
                       
 if [[ "${ENABLE_STEP}" == "1" ]]; then read -p "Press any key to continue..."; fi
 
+echo OS : ${OS}
 if [[ ${OS} == "Mingw32" || ${OS} == "Mingw64" ]]
 then
 	echo CMAKE UNIX

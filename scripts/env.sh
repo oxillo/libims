@@ -73,7 +73,7 @@ if [[ -z ${IOLAND_ROOT} ]]; then export IOLAND_ROOT=/home/ioland/REF; fi
 if [[ -z ${CROSSTOOLS_ROOT} ]]; then export CROSSTOOLS_ROOT=/home/CrossTools; fi
 
 # CMAKE
-if [ x`command -v cmake` = x ]; then
+if [[ x`command -v cmake` = x ]]; then
 	if [[ -z ${CMAKE_BIN} ]]; then export CMAKE_BIN=${IOLAND_ROOT}/COTS/CMAKE/V3.9.6/BINARIES/Linux/bin; fi
 	echo "# CMAKE BIN [${CMAKE_BIN}]"
 	export PATH=${CMAKE_BIN}:${PATH}
