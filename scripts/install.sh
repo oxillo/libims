@@ -144,10 +144,14 @@ export arg="-DCMAKE_BUILD_TYPE=${BUILD_TYPE}
             -DENABLE_INSTRUMENTATION=${ENABLE_INSTRUMENTATION}"
                       
 if [[ "${ENABLE_STEP}" == "1" ]]; then read -p "Press any key to continue..."; fi
+
 if [[ ${OS} == "Mingw32" || ${OS} == "Mingw64" ]]
 then
+	echo CMAKE UNIX
+	echo cmake ${_ROOT} -G"Unix Makefiles" ${arg}
 	cmake ${_ROOT} -G"Unix Makefiles" ${arg}
 else
+	echo CMAKE NINJA
 	cmake ${_ROOT} -G"Ninja" ${arg} 
 fi
 
