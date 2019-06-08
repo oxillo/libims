@@ -36,7 +36,7 @@ init:
 #- if "%BUILDER%_%PLATFORM%"=="MSYS2_x86" set MSYSTEM=MINGW32
 #- if "%BUILDER%_%PLATFORM%"=="MSYS2_x64" set MSYSTEM=MINGW64
 #- '%MSYS2_PATH%\usr\bin\bash -lc "pacman --noconfirm --needed -Sy bash pacman pacman-mirrors msys2-runtime msys2-runtime-devel"'
-#- '%MSYS2_PATH%\usr\bin\bash -lc "pacman --noconfirm -S --needed mingw-w64-i686-cmake "'
+- '%MSYS2_PATH%\usr\bin\bash -lc "pacman --noconfirm -S --needed mingw-w64-i686-cmake "'
 # mingw-w64-i686-make mingw-w64-x86_64-gcc
 #- if "%BUILDER%"=="VS" set PATH=%ProgramFiles(x86)%\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin;%PATH%
 
@@ -55,6 +55,7 @@ before_build:
 #- if "%BUILDER%"=="MSYS2" (%MSYS2_PATH%\usr\bin\bash -lc "ccache -s")
 
 build_script:
+- if "%BUILDER%"=="MSYS2" (%MSYS2_PATH%\usr\bin\bash -lc "env")
 - if "%BUILDER%"=="MSYS2" (%MSYS2_PATH%\usr\bin\bash -lc "cd scripts && ./install.sh")
 #- ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
 
