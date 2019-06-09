@@ -69,14 +69,13 @@ before_build:
 - mkdir build
 #- set INSTALL_PATH=%CD%/install/${OS}/${WORDSIZE};
 - set INSTALL_PATH=%CD%/install
-- if "%BUILDER%"=="MSYS2" (%MSYS2_PATH%\usr\bin\bash -lc "cd build && cmake .. -G"Unix Makefiles" 
+- if "%BUILDER%"=="MSYS2" (%MSYS2_PATH%\usr\bin\bash -lc "cd build && cmake .. -G\"Unix Makefiles\" 
       -DCMAKE_BUILD_TYPE=Debug 
       -DCMAKE_INSTALL_PREFIX=${INSTALL_PATH} 
       -DWORDSIZE=i686 
       -DENABLE_DOC=1 
-      -DENABLE_TEST=1 
-#      -DENABLE_INSTRUMENTATION=${ENABLE_INSTRUMENTATION}
-)
+      -DENABLE_TEST=1 ")
+#  DENABLE_INSTRUMENTATION=${ENABLE_INSTRUMENTATION}
 #- if "%BUILDER%"=="MSYS2" (%MSYS2_PATH%\usr\bin\bash -lc "ccache -z")
 #- if "%BUILDER%"=="MSYS2" (%MSYS2_PATH%\usr\bin\bash -lc "ccache -s")
 
