@@ -1,4 +1,4 @@
-// File generated from <vistas_config.xsd> at 2018-06-21T11:11:07
+// File generated from <vistas_config.xsd> at 2019-06-09T09:53:32
 static const char* vistas_config_xsd =
 "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
 "\n"

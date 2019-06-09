@@ -1,4 +1,4 @@
-// File generated from <ims_config.xsd> at 2018-06-21T11:11:07
+// File generated from <ims_config.xsd> at 2019-06-09T09:53:32
 static const char* ims_config_xsd =
 "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\n"
 "\n"
