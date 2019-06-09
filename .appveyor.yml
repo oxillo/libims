@@ -46,8 +46,13 @@ init:
 #- if "%BUILDER%_%PLATFORM%"=="MSYS2_x64" set MSYSTEM=MINGW64
 #- '%MSYS2_PATH%\usr\bin\bash -lc "pacman --noconfirm --needed -Sy bash pacman pacman-mirrors msys2-runtime msys2-runtime-devel"'
 - '%MSYS2_PATH%\usr\bin\bash -lc "echo $MINGW_PACKAGE_PREFIX $CONFIGURATION "'
-- '%MSYS2_PATH%\usr\bin\bash -lc "pacman --noconfirm -S --needed mingw-w64-i686-cmake 
-     mingw-w64-i686-libxml2 mingw-w64-i686-lcov mingw-w64-i686-doxygen mingw-w64-i686-graphviz mingw-w64-i686-asciidoctor "'
+- '%MSYS2_PATH%\usr\bin\bash -lc "pacman --noconfirm -S --needed 
+      ${MINGW_PACKAGE_PREFIX}-cmake
+      ${MINGW_PACKAGE_PREFIX}-libxml2
+      ${MINGW_PACKAGE_PREFIX}-lcov
+      ${MINGW_PACKAGE_PREFIX}-doxygen
+      ${MINGW_PACKAGE_PREFIX}-graphviz
+      ${MINGW_PACKAGE_PREFIX}-asciidoctor"'
 - set BUILD_PATH=%CD%\build\%MSYSTEM%\%PLATFORM%
 #- if "%BUILDER%"=="VS" set PATH=%ProgramFiles(x86)%\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin;%PATH%
 
@@ -61,13 +66,24 @@ install:
 #- if "%BUILDER%"=="MSYS2" (%MSYS2_PATH%\usr\bin\bash -lc "cd scripts && ./install.sh")
 
 before_build:
-- 
-- if "%BUILDER%"=="MSYS2" (%MSYS2_PATH%\usr\bin\bash -lc "cd scripts && ./install.sh")
+- mkdir build
+#- set INSTALL_PATH=%CD%/install/${OS}/${WORDSIZE};
+- set INSTALL_PATH=%CD%/install
+- if "%BUILDER%"=="MSYS2" (%MSYS2_PATH%\usr\bin\bash -lc "cd build && cmake .. -G"Unix Makefiles" 
+      -DCMAKE_BUILD_TYPE=Debug 
+      -DCMAKE_INSTALL_PREFIX=${INSTALL_PATH} 
+      -DWORDSIZE=i686 
+      -DENABLE_DOC=1 
+      -DENABLE_TEST=1 
+#      -DENABLE_INSTRUMENTATION=${ENABLE_INSTRUMENTATION}
+)
 #- if "%BUILDER%"=="MSYS2" (%MSYS2_PATH%\usr\bin\bash -lc "ccache -z")
 #- if "%BUILDER%"=="MSYS2" (%MSYS2_PATH%\usr\bin\bash -lc "ccache -s")
 
 build_script:
-- if "%BUILDER%"=="MSYS2" (%MSYS2_PATH%\usr\bin\bash -lc "cd scripts && ./install.sh")
+#- if "%BUILDER%"=="MSYS2" (%MSYS2_PATH%\usr\bin\bash -lc "cd scripts && ./install.sh")
+- if "%BUILDER%"=="MSYS2" (%MSYS2_PATH%\usr\bin\bash -lc "cmake --build build --target all --config Debug")
+
 #- ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
 
 - ps: |
