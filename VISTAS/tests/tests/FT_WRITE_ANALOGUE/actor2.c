@@ -17,6 +17,10 @@
 #include "math.h"
 #include "htonl.h"
 
+extern float htonf(float value);
+
+
+
 #define IMS_CONFIG_FILE      "config/actor2/ims.xml"
 #define VISTAS_CONFIG_FILE   "config/actor2/vistas.xml"
 #define IMS_INIT_FILE        "config/actor2/init.xml"
