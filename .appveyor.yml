@@ -122,6 +122,7 @@ before_test:
       -DENABLE_DOC=0 
       -DENABLE_TEST=1
       -DENABLE_INSTRUMENTATION=0 ")
+- if "%BUILDER%"=="MSYS2" (%MSYS2_PATH%\usr\bin\bash -lc "cmake --build tests --target all --config ${CONFIGURATION}")
 #- if "%BUILDER%"=="MSYS2" (%MSYS2_PATH%\usr\bin\bash -lc "cmake --build build --target precoverage --config ${CONFIGURATION}")
 
 test_script:
