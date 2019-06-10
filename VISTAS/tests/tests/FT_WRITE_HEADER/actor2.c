@@ -59,6 +59,8 @@ ims_test_actor_t actor;
 
 #define INVALID_POINTER ((void*)42)
 
+#define u64absolutediff(x,y) ((x>y)?(x-y):(y-x))
+
 #define TEST_HEADER(header, ref_prod_id, ref_seq_num, ref_qos_timestamp, ref_data_timestamp) \
 {\
     uint16_t prod_id = bswap_16(*(uint16_t*)((void*)header));\
@@ -69,7 +71,7 @@ ims_test_actor_t actor;
     TEST_ASSERT(actor, seq_num==ref_seq_num, "The seq_num has the good value.");\
     if (ref_qos_timestamp)\
 {\
-    TEST_ASSERT(actor, abs(qos_timestamp-ref_qos_timestamp) < TIMESTAMP_TOLERANCE, "The qos_timestamp has the good value.");\
+    TEST_ASSERT(actor, u64absolutediff(qos_timestamp,ref_qos_timestamp) < TIMESTAMP_TOLERANCE, "The qos_timestamp has the good value.");\
     }\
     else\
 {\
