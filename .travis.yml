@@ -102,13 +102,13 @@ install:
 
 
 script:
-  - mkdir -p $BUILD_PATH && cd $BUILD_PATH && cmake $PRJ_PATH -G\"Unix Makefiles\" 
+  - mkdir -p $BUILD_PATH && cd $BUILD_PATH && cmake $PRJ_PATH -G"Unix Makefiles" 
       -DCMAKE_BUILD_TYPE=${CONFIGURATION}
       -DCMAKE_INSTALL_PREFIX=${INSTALL_PATH} 
       -DWORDSIZE=${WORDSIZE}
       -DENABLE_DOC=0 
       -DENABLE_TEST=0
-      -DENABLE_INSTRUMENTATION=0 "
+      -DENABLE_INSTRUMENTATION=0
   - cmake --build $BUILD_PATH --target package --config ${CONFIGURATION}
 
 git:
