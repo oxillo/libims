@@ -33,27 +33,27 @@ public:
     // @see create
     //
     inline socket_unicast_input(socket_address_ptr address)
-    throw(ims::exception);
+    MAYTHROWIMSEXCEPTION;
 
     //
     // Initialize an input socket
     //
     void create(socket_address_ptr address)
-    throw(ims::exception);
+    MAYTHROWIMSEXCEPTION;
 
     // Receive from the socket
     uint32_t receive(char* buffer, uint32_t buffer_size, client* client = NULL)
-    throw(ims::exception);
+    MAYTHROWIMSEXCEPTION;
 
     // Write to the socket
     // Will always thow error::invalid_direction.
     void send(const char* buffer, uint32_t size)
-    throw(ims::exception);
+    MAYTHROWIMSEXCEPTION;
 
 
     // Reply to the emmiter
     virtual void reply(client& client, const char* buffer, uint32_t size)
-    throw(ims::exception);
+    MAYTHROWIMSEXCEPTION;
 };
 
 //***************************************************************************
@@ -65,7 +65,7 @@ socket_unicast_input::socket_unicast_input() :
 }
 
 socket_unicast_input::socket_unicast_input(socket_address_ptr address)
-throw(ims::exception)
+MAYTHROWIMSEXCEPTION
 {
     create(address);
 }

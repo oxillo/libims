@@ -168,7 +168,7 @@ public:
         // Add a new element to the pool. Use socket address as address.
         // May throw if this address is already registered. You have
         // to call @see exists() before.
-        void add(socket_ptr socket, port_ptr port, std::string channel_name) throw (ims::exception);
+        void add(socket_ptr socket, port_ptr port, std::string channel_name) MAYTHROWIMSEXCEPTION;
 
         // Generate the pool with the elements registered in the factory.
         // The factory can be safely destroyed after this call.

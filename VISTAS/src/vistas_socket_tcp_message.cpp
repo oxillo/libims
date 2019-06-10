@@ -37,7 +37,7 @@ static const __attribute__((__unused__)) int one = 1;
 //
 // Ctor
 //
-socket_tcp_message::socket_tcp_message(socket_address_ptr address) throw(ims::exception)
+socket_tcp_message::socket_tcp_message(socket_address_ptr address) MAYTHROWIMSEXCEPTION
 {
     
     socket::create(address, SOCK_STREAM);
@@ -66,7 +66,7 @@ socket_tcp_message::socket_tcp_message(socket_address_ptr address) throw(ims::ex
 // Receive a VISTAS packet from the socket
 //
 uint32_t socket_tcp_message::receive_packet(char* buffer, uint32_t buffer_size)
-throw(ims::exception)
+MAYTHROWIMSEXCEPTION
 {
     uint32_t header[2];
     
@@ -128,7 +128,7 @@ throw(ims::exception)
 // Write to the socket
 //
 void socket_tcp_message::send(const char* buffer, uint32_t size)
-throw(ims::exception)
+MAYTHROWIMSEXCEPTION
 {
     int32_t sent_size = ::send(_sock, buffer, size, 0);
 
@@ -143,7 +143,7 @@ throw(ims::exception)
 uint32_t socket_tcp_message::receive(char* buffer,
                                      uint32_t buffer_size,
                                      __attribute__((__unused__)) client* client)
-throw(ims::exception)
+MAYTHROWIMSEXCEPTION
 {
     ssize_t res = recv(_sock, buffer, buffer_size, 0);
 
@@ -163,7 +163,7 @@ throw(ims::exception)
 // Set the socket to blocking
 //
 void socket_tcp_message::set_blocking(bool blocking)
-throw(ims::exception)
+MAYTHROWIMSEXCEPTION
 {
 #ifdef _WIN32
     unsigned long mode = blocking ? 0 : 1;
@@ -181,7 +181,7 @@ throw(ims::exception)
 void socket_tcp_message::reply(__attribute__((__unused__)) client& client,
                                __attribute__((__unused__)) const char* buffer,
                                __attribute__((__unused__)) uint32_t size)
-throw(ims::exception)
+MAYTHROWIMSEXCEPTION
 {
     THROW_IMS_ERROR(ims_invalid_configuration, to_string() << ": Cannot reply!");
 }

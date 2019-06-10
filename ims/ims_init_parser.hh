@@ -33,7 +33,7 @@ namespace ims
     ims_init_parser();
     virtual ~ims_init_parser();
     
-    void load_and_validate(const char* xml_file_path) throw(ims::exception);
+    void load_and_validate(const char* xml_file_path) MAYTHROWIMSEXCEPTION;
   
     bool hasAfdxSamplingMessageValue(const std::string & local_name );
     bool hasA429LabelMessageValue(const std::string & local_name );

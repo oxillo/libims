@@ -23,6 +23,7 @@
 #include <string>
 #include <tr1/unordered_map>
 
+
 // C API interface 
 // Beacause of the use of namesapces, we can't directly use this type in C++ code
 struct ims_internal_message_t {};
@@ -77,64 +78,64 @@ public:
     // Default implementation just throw an ims::exception.
     virtual ims_return_code_t write_sampling(const char* message_addr,
                                              uint32_t    message_size)
-    throw(ims::exception);
+    MAYTHROWIMSEXCEPTION;
     
     virtual ims_return_code_t read_sampling(char*           message_addr,
                                             uint32_t*       message_size,
                                             ims_validity_t* message_validity)
-    throw(ims::exception);
+    MAYTHROWIMSEXCEPTION;
     
     virtual ims_return_code_t push_queuing(const char* message_addr,
                                            uint32_t    message_size)
-    throw(ims::exception);
+    MAYTHROWIMSEXCEPTION;
     
     virtual ims_return_code_t pop_queuing(char*     message_addr,
                                           uint32_t* message_size)
-    throw(ims::exception);
+    MAYTHROWIMSEXCEPTION;
     
     
     virtual ims_return_code_t write_nad(const char* message_addr,
                                         uint32_t    message_size)
-    throw(ims::exception);
+    MAYTHROWIMSEXCEPTION;
     
     virtual ims_return_code_t read_nad(char*           message_addr,
                                        uint32_t*       message_size,
                                        ims_validity_t* message_validity)
-    throw(ims::exception);
+    MAYTHROWIMSEXCEPTION;
     
     
     virtual ims_return_code_t get_max_size(uint32_t* max_size)
-    throw(ims::exception);
+    MAYTHROWIMSEXCEPTION;
     
     
     virtual ims_return_code_t set_validity_duration(uint32_t validity_duration_us)
-    throw(ims::exception);
+    MAYTHROWIMSEXCEPTION;
     
     virtual ims_return_code_t get_validity_duration(uint32_t* validity_duration_us)
-    throw(ims::exception);
+    MAYTHROWIMSEXCEPTION;
     
     virtual uint32_t get_data(char      *data,
                               uint32_t  max_size,
                               uint32_t  queue_index = 0)
-    throw(ims::exception);
+    MAYTHROWIMSEXCEPTION;
     
     virtual ims_return_code_t reset()
-    throw(ims::exception) = 0;
+    MAYTHROWIMSEXCEPTION = 0;
     
     virtual ims_return_code_t invalidate()
-    throw(ims::exception);
+    MAYTHROWIMSEXCEPTION;
     
     virtual ims_return_code_t queuing_pending(uint32_t* count)
-    throw(ims::exception);
+    MAYTHROWIMSEXCEPTION;
     
     virtual ims_return_code_t get_depth(uint32_t* depth)
-    throw(ims::exception);
+    MAYTHROWIMSEXCEPTION;
 
 	virtual ims_return_code_t set_id(const uint32_t pId)
-	throw(ims::exception);
+	MAYTHROWIMSEXCEPTION;
 
 	virtual ims_return_code_t set_name(const std::string pName)
-	throw(ims::exception);
+	MAYTHROWIMSEXCEPTION;
     
     // Return true if message match given information
     // Error are logged with ims::log
@@ -151,7 +152,7 @@ public:
     
     // if the message has an init value, this method is called to init the buffer
     virtual void init_data(const char* data,
-                           uint32_t    size) throw(ims::exception) = 0;
+                           uint32_t    size) MAYTHROWIMSEXCEPTION = 0;
     
 protected:
     inline message(std::string     name,

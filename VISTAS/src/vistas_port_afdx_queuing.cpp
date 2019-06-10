@@ -115,7 +115,7 @@ void port_afdx_queuing::send()
 // Add data to cycle buffer
 //
 void port_afdx_queuing::push(const char* message, uint32_t message_size)
-throw(ims::exception)
+MAYTHROWIMSEXCEPTION
 {
     if (message_size > _max_size) {
         THROW_IMS_ERROR(ims_message_invalid_size, "Message size " << message_size << " is too big !");
@@ -154,7 +154,7 @@ uint32_t port_afdx_queuing::pop(char* message, uint32_t message_max_size)
 uint32_t port_afdx_queuing::get_queue_data(char       *data,
                                            uint32_t   max_size,
                                            uint32_t   queue_index)
-throw(ims::exception)
+MAYTHROWIMSEXCEPTION
 {
     if(queue_index >= _nb_messages){
         THROW_IMS_ERROR(ims_message_invalid_size, "Message queue index " << queue_index <<

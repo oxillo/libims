@@ -66,7 +66,7 @@ public:
     // @param schema_in_memory schemas as string
     void load_and_validate(const char* xml_file_path,
                            const char* schema_in_memory)
-    throw(ims::exception);
+    MAYTHROWIMSEXCEPTION;
 
     // If an libxml error has occured, log it.
     // Else, does nothing.
@@ -77,42 +77,42 @@ public:
     std::string xml_node_property(xmlNodePtr node,
                                   std::string name,
                                   bool optional = false)
-    throw(ims::exception);
+    MAYTHROWIMSEXCEPTION;
 
     // Return a property of a node as signed integer
     // may throw if property not found or not an integer
     int32_t xml_node_property_int(xmlNodePtr node, std::string name)
-    throw(ims::exception);
+    MAYTHROWIMSEXCEPTION;
 
     // Return a property of a node as signed integer
     // may throw if property not an integer
     int32_t xml_node_property_int(xmlNodePtr node, std::string name, int32_t default_value)
-    throw(ims::exception);
+    MAYTHROWIMSEXCEPTION;
 
     // Return a property of a node as unsigned integer
     // may throw if property not found or not an integer
     uint32_t xml_node_property_uint(xmlNodePtr node, std::string name)
-    throw(ims::exception);
+    MAYTHROWIMSEXCEPTION;
 
     // Return a property of a node as unsigned integer
     // may throw if property not an integer
     uint32_t xml_node_property_uint(xmlNodePtr node, std::string name, uint32_t default_value)
-    throw(ims::exception);
+    MAYTHROWIMSEXCEPTION;
 
     // Return a property of a node as float
     // may throw if property not found or not a floating point number
     float xml_node_property_float(xmlNodePtr node, std::string name)
-    throw(ims::exception);
+    MAYTHROWIMSEXCEPTION;
 
     // Return a property of a node as float
     // may throw if property not a floating point number
     float xml_node_property_float(xmlNodePtr node, std::string name, float default_value)
-    throw(ims::exception);
+    MAYTHROWIMSEXCEPTION;
 
     // Return a hex property of a node as unsigned integer
     // may throw if property not found or not an hexa integer
     uint32_t xml_node_property_hex(xmlNodePtr node, std::string name)
-    throw(ims::exception);
+    MAYTHROWIMSEXCEPTION;
 
     // Return the first child node (ignore text nodes)
     xmlNodePtr xml_node_first_child(xmlNodePtr node);
@@ -125,11 +125,11 @@ public:
     xmlNodeSetPtr xml_xpath_get_children(const xmlDocPtr   doc,
                                          const xmlNodePtr  node,
                                          const char* const xpath)
-    throw(ims::exception);
+    MAYTHROWIMSEXCEPTION;
 
     // Return the text content of a node element
     std::string xml_node_get_content(const xmlNodePtr node)
-    throw(ims::exception);
+    MAYTHROWIMSEXCEPTION;
 
     // Internal document
     xmlDocPtr _doc;

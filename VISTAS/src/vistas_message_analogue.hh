@@ -49,28 +49,28 @@ public:
                      uint32_t        period_us);
 
     virtual void init_data(const char* data,
-                           uint32_t    size) throw(ims::exception);
+                           uint32_t    size) MAYTHROWIMSEXCEPTION;
 
     // API implementation
     virtual ims_return_code_t write_sampling(const char* message_addr,
                                              uint32_t    message_size)
-    throw(ims::exception);
+    MAYTHROWIMSEXCEPTION;
     
     virtual ims_return_code_t read_sampling(char*           message_addr,
                                             uint32_t*       message_size,
                                             ims_validity_t* message_validity)
-    throw(ims::exception);
+    MAYTHROWIMSEXCEPTION;
 
     inline virtual uint32_t get_data(char      *data,
                               uint32_t  max_size,
                               uint32_t  queue_index = 0)
-    throw(ims::exception);
+    MAYTHROWIMSEXCEPTION;
 
     virtual ims_return_code_t reset()
-    throw(ims::exception);
+    MAYTHROWIMSEXCEPTION;
 
     virtual ims_return_code_t invalidate()
-    throw(ims::exception);
+    MAYTHROWIMSEXCEPTION;
 
     virtual bool check(ims_protocol_t   protocol,
                        uint32_t         max_size,
@@ -78,12 +78,12 @@ public:
                        ims_direction_t  direction);
 
     virtual ims_return_code_t set_validity_duration(uint32_t validity_duration_us)
-    throw(ims::exception);
+    MAYTHROWIMSEXCEPTION;
 
     virtual ims_return_code_t get_validity_duration(uint32_t* validity_duration_us)
-    throw(ims::exception);
+    MAYTHROWIMSEXCEPTION;
 
-    inline ims_return_code_t get_max_size(uint32_t* max_size) throw(ims::exception);
+    inline ims_return_code_t get_max_size(uint32_t* max_size) MAYTHROWIMSEXCEPTION;
 
     inline void port_read_data(uint8_t * data);
     inline void port_set_data(const uint8_t * data);
@@ -125,7 +125,7 @@ void message_analogue::port_set_data(const uint8_t * data)
 }
 
 ims_return_code_t message_analogue::get_max_size(uint32_t* max_size)
-throw(ims::exception)
+MAYTHROWIMSEXCEPTION
 {
     *max_size = ANALOGUE_USER_SIZE;
     return ims_no_error;
@@ -134,7 +134,7 @@ throw(ims::exception)
 uint32_t message_analogue::get_data(char      *data,
                                     uint32_t  max_size,
                                     uint32_t  queue_index)
-throw(ims::exception)
+MAYTHROWIMSEXCEPTION
 {
     if(queue_index != 0){
         THROW_IMS_ERROR(ims_message_invalid_size, "Message is not a queuing one. Queue index should be nul.");

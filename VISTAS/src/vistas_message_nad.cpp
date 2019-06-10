@@ -47,7 +47,7 @@ message_nad::message_nad(context_weak_ptr context,
 }
 
 void message_nad::init_data(__attribute__((__unused__)) const char* data,
-                            __attribute__((__unused__)) uint32_t size) throw(ims::exception)
+                            __attribute__((__unused__)) uint32_t size) MAYTHROWIMSEXCEPTION
 {
     THROW_IMS_ERROR(ims_implementation_specific_error, "Init data not supported for NAD");
 }
@@ -57,7 +57,7 @@ void message_nad::init_data(__attribute__((__unused__)) const char* data,
 //
 ims_return_code_t message_nad::write_nad(const char* message_addr,
                                          uint32_t    message_size)
-throw(ims::exception)
+MAYTHROWIMSEXCEPTION
 {
     if (get_direction() == ims_input) {
         THROW_IMS_ERROR(ims_invalid_configuration,
@@ -79,7 +79,7 @@ throw(ims::exception)
 ims_return_code_t message_nad::read_nad(char*           message_addr,
                                         uint32_t*       message_size,
                                         ims_validity_t* message_validity)
-throw(ims::exception)
+MAYTHROWIMSEXCEPTION
 {
     if (get_direction() == ims_output) {
         THROW_IMS_ERROR(ims_invalid_configuration,
@@ -101,7 +101,7 @@ throw(ims::exception)
 // Reset this message
 //
 ims_return_code_t message_nad::reset()
-throw(ims::exception)
+MAYTHROWIMSEXCEPTION
 {
     _validity = ims_never_received;
     memset(_data, 0, _size);

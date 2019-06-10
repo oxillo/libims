@@ -42,13 +42,13 @@ public:
 
     // Add / Remove message. May throw.
     void push(const char* message, uint32_t message_size)
-    throw(ims::exception);
+    MAYTHROWIMSEXCEPTION;
     uint32_t pop(char* message, uint32_t message_max_size);
 
     uint32_t get_queue_data(char      *data,
                             uint32_t  max_size,
                             uint32_t  queue_index = 0)
-    throw(ims::exception);
+    MAYTHROWIMSEXCEPTION;
 
     inline uint32_t pending_count() { return _nb_messages; }
 

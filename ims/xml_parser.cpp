@@ -29,7 +29,7 @@ uint32_t xml_parser::_parsers_count = 0;
 //
 void xml_parser::load_and_validate(const char* xml_file_path, 
                                    const char* schema_in_memory)
-throw(ims::exception)
+MAYTHROWIMSEXCEPTION
 {
     _parsers_count++;
 
@@ -90,7 +90,7 @@ throw(ims::exception)
 std::string xml_parser::xml_node_property(xmlNodePtr node, 
                                           std::string name,
                                           bool optional)
-throw(ims::exception)
+MAYTHROWIMSEXCEPTION
 {
     xmlChar* value = xmlGetProp(node, (xmlChar*) name.c_str());
     if (! value) {
@@ -109,7 +109,7 @@ throw(ims::exception)
 // may throw if property not found or not an integer
 //
 int32_t xml_parser::xml_node_property_int(xmlNodePtr node, std::string name)
-throw(ims::exception)
+MAYTHROWIMSEXCEPTION
 {
     std::string value = xml_node_property(node, name);
 
@@ -128,7 +128,7 @@ throw(ims::exception)
 // may throw if property not an integer
 //
 int32_t xml_parser::xml_node_property_int(xmlNodePtr node, std::string name, int32_t default_value)
-throw(ims::exception)
+MAYTHROWIMSEXCEPTION
 {
     std::string value = xml_node_property(node, name, true);
     if (value.empty()) return default_value;
@@ -148,7 +148,7 @@ throw(ims::exception)
 // may throw if property not found or not an integer
 //
 uint32_t xml_parser::xml_node_property_uint(xmlNodePtr node, std::string name)
-throw(ims::exception)
+MAYTHROWIMSEXCEPTION
 {
     std::string value = xml_node_property(node, name);
 
@@ -167,7 +167,7 @@ throw(ims::exception)
 // may throw if property not an integer
 //
 uint32_t xml_parser::xml_node_property_uint(xmlNodePtr node, std::string name, uint32_t default_value)
-throw(ims::exception)
+MAYTHROWIMSEXCEPTION
 {
     std::string value = xml_node_property(node, name, true);
     if (value.empty()) return default_value;
@@ -186,7 +186,7 @@ throw(ims::exception)
 // Return a property of a node as float
 //
 float xml_parser::xml_node_property_float(xmlNodePtr node, std::string name)
-throw(ims::exception)
+MAYTHROWIMSEXCEPTION
 {
     std::string value = xml_node_property(node, name);
 
@@ -204,7 +204,7 @@ throw(ims::exception)
 // Return a property of a node as float
 //
 float xml_parser::xml_node_property_float(xmlNodePtr node, std::string name, float default_value)
-throw(ims::exception)
+MAYTHROWIMSEXCEPTION
 {
     std::string value = xml_node_property(node, name, true);
     if (value.empty()) return default_value;
@@ -223,7 +223,7 @@ throw(ims::exception)
 // Return a hex property of a node as integer
 //
 uint32_t xml_parser::xml_node_property_hex(xmlNodePtr node, std::string name)
-throw(ims::exception)
+MAYTHROWIMSEXCEPTION
 {
     std::string value = xml_node_property(node, name);
 
@@ -263,7 +263,7 @@ xmlNodePtr xml_parser::xml_node_next_sibling(xmlNodePtr node)
 xmlNodeSetPtr xml_parser::xml_xpath_get_children(const xmlDocPtr   doc, 
                                                  const xmlNodePtr  node,
                                                  const char* const xpath)
-throw(ims::exception)
+MAYTHROWIMSEXCEPTION
 {
     xmlXPathContextPtr context;
     xmlXPathObjectPtr  res;
@@ -303,7 +303,7 @@ throw(ims::exception)
 // Return the text content of a node element
 //
 std::string xml_parser::xml_node_get_content(const xmlNodePtr node)
-throw(ims::exception)
+MAYTHROWIMSEXCEPTION
 {
     if (node->children == NULL) THROW_NODE_ERROR(node, "Node " << node->name << " is empty !");
     if (node->children->next) THROW_NODE_ERROR(node, "Node " << node->name << " should contain only one text node !");

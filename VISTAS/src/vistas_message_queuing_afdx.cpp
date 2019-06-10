@@ -38,14 +38,14 @@ message_queuing_afdx::message_queuing_afdx(vistas::context_weak_ptr context,
 }
 
 void message_queuing_afdx::init_data(__attribute__((__unused__)) const char* data,
-                                     __attribute__((__unused__)) uint32_t size) throw(ims::exception)
+                                     __attribute__((__unused__)) uint32_t size) MAYTHROWIMSEXCEPTION
 {
     THROW_IMS_ERROR(ims_implementation_specific_error, "Init data not supported for queuing");
 }
 
 ims_return_code_t message_queuing_afdx::push_queuing(const char* message_addr,
                                                      uint32_t    message_size)
-throw(ims::exception)
+MAYTHROWIMSEXCEPTION
 {
     if (get_direction() == ims_input) {
         THROW_IMS_ERROR(ims_invalid_configuration,
@@ -59,7 +59,7 @@ throw(ims::exception)
 
 ims_return_code_t message_queuing_afdx::pop_queuing(char*     message_addr,
                                                     uint32_t* message_size)
-throw(ims::exception)
+MAYTHROWIMSEXCEPTION
 {
     if (get_direction() == ims_output) {
         THROW_IMS_ERROR(ims_invalid_configuration,
@@ -72,14 +72,14 @@ throw(ims::exception)
 }
 
 ims_return_code_t message_queuing_afdx::queuing_pending(uint32_t* count)
-throw(ims::exception)
+MAYTHROWIMSEXCEPTION
 {
     *count = static_cast<port_afdx_queuing*>(_port)->pending_count();
     return ims_no_error;
 }
 
 ims_return_code_t message_queuing_afdx::reset()
-throw(ims::exception)
+MAYTHROWIMSEXCEPTION
 {
     static_cast<port_afdx_queuing*>(_port)->reset();
     return ims_no_error;
@@ -127,7 +127,7 @@ bool message_queuing_afdx::check(ims_protocol_t   protocol,
 uint32_t message_queuing_afdx::get_data(char      *data,
                                         uint32_t  max_size,
                                         uint32_t  queue_index)
-throw(ims::exception)
+MAYTHROWIMSEXCEPTION
 {
     return static_cast<port_afdx_queuing*>(_port)->get_queue_data(data,max_size,queue_index);
 }

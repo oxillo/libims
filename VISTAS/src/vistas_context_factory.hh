@@ -20,6 +20,7 @@
 #include "backend_context.hh"
 #include "vistas_context.hh"
 
+
 namespace vistas
 {
 
@@ -27,7 +28,7 @@ class context::factory : public backend::context::factory
 {
 public:
 
-    factory(const char* vistas_config_file_path) throw(ims::exception);
+    factory(const char* vistas_config_file_path) MAYTHROWIMSEXCEPTION;
 
     ~factory();
 

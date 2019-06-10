@@ -388,7 +388,7 @@ void context::factory::load_can_bus(node_ptr ims_parent_node, xmlNodePtr bus_nod
 			try 
 			{
 				message_id = xml_node_property_hex(message_node, ATTRIBUTE_MESSAGE_ID);
-			}catch( ims::exception )
+			}catch( ims::exception& e)
 			{
 				message_id = xml_node_property_hex(message_node, ATTRIBUTE_MESSAGE_DEFAULT_ID);
 			}
@@ -630,7 +630,7 @@ context* context::factory::create_context(backend::context::factory_ptr backend_
 // Interface implementation
 //
 context* context::create(backend::context::factory_ptr backend_factory, const char* config_file_path, ims_create_context_parameter_t* create_context_parameter)
-throw(ims::exception)
+MAYTHROWIMSEXCEPTION
 {
     context::factory factory;
     return factory.create_context(backend_factory, config_file_path, create_context_parameter);

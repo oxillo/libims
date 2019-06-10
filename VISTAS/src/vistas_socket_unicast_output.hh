@@ -32,27 +32,27 @@ public:
     // @see create
     //
     inline socket_unicast_output(socket_address_ptr address)
-    throw(ims::exception);
+    MAYTHROWIMSEXCEPTION;
 
     //
     // Initialize an output socket
     //
     void create(socket_address_ptr address)
-    throw(ims::exception);
+    MAYTHROWIMSEXCEPTION;
 
     // Receive from the socket
     // Will always thow error::invalid_direction.
     virtual uint32_t receive(char* buffer, uint32_t buffer_size, client* client = NULL)
-    throw(ims::exception);
+    MAYTHROWIMSEXCEPTION;
 
     // Write to the socket
-    virtual void send(const char* buffer, uint32_t size) throw(ims::exception);
+    virtual void send(const char* buffer, uint32_t size) MAYTHROWIMSEXCEPTION;
 
 
     // Reply to the emmiter
     // Will always thow error::invalid_direction.
     virtual void reply(client& client,const char* buffer, uint32_t size)
-    throw(ims::exception);
+    MAYTHROWIMSEXCEPTION;
 
 private:
     struct sockaddr_in _saddr;
@@ -68,7 +68,7 @@ socket_unicast_output::socket_unicast_output() :
 }
 
 socket_unicast_output::socket_unicast_output(socket_address_ptr address)
-throw(ims::exception) :
+MAYTHROWIMSEXCEPTION :
     vistas::socket()
 {
     create(address);

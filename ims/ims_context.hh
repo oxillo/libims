@@ -26,7 +26,7 @@ namespace ims
     static context* create(backend::context::factory_ptr backend_factory,
                            const char*                   ims_config_file_path,
                            ims_create_context_parameter_t* create_context_parameter)
-      throw(ims::exception);
+      MAYTHROWIMSEXCEPTION;
 
     inline backend::context_ptr get_backend_context() { return _backend_context; }
 

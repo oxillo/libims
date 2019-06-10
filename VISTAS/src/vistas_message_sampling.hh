@@ -42,24 +42,24 @@ public:
     // API implementation
     virtual ims_return_code_t write_sampling(const char* message_addr,
                                              uint32_t    message_size)
-    throw(ims::exception);
+    MAYTHROWIMSEXCEPTION;
 
     virtual ims_return_code_t read_sampling(char*           message_addr,
                                             uint32_t*       message_size,
                                             ims_validity_t* message_validity)
-    throw(ims::exception);
+    MAYTHROWIMSEXCEPTION;
 
     virtual ims_return_code_t set_validity_duration(uint32_t validity_duration_us)
-    throw(ims::exception);
+    MAYTHROWIMSEXCEPTION;
 
     virtual ims_return_code_t get_validity_duration(uint32_t* validity_duration_us)
-    throw(ims::exception);
+    MAYTHROWIMSEXCEPTION;
 
     virtual ims_return_code_t reset()
-    throw(ims::exception);
+    MAYTHROWIMSEXCEPTION;
 
     virtual ims_return_code_t invalidate()
-    throw(ims::exception);
+    MAYTHROWIMSEXCEPTION;
 
     virtual bool check(ims_protocol_t   protocol,
                        uint32_t         max_size,

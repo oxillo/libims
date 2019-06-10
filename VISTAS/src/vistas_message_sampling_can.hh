@@ -38,7 +38,7 @@ namespace vistas
                                 port_weak_ptr       port);
 
 	inline ims_return_code_t set_id(const uint32_t pId)
-	throw(ims::exception);
+	MAYTHROWIMSEXCEPTION;
 
     uint32_t id;
   };
@@ -63,7 +63,7 @@ namespace vistas
 	}
 
   ims_return_code_t message_sampling_can::set_id(const uint32_t pId)
-	  throw(ims::exception)
+	  MAYTHROWIMSEXCEPTION
   {
     // Convert the new id to hexa
 	std::stringstream iss;

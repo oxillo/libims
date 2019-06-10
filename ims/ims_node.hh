@@ -48,8 +48,8 @@ public:
     inline std::string   get_path();    // Will alloc for all non-root nodes
 
     // Children
-    void add_child(node_ptr child) throw (ims::exception);
-    node_ptr find_child(std::string name) throw (ims::exception);
+    void add_child(node_ptr child) MAYTHROWIMSEXCEPTION;
+    node_ptr find_child(std::string name) MAYTHROWIMSEXCEPTION;
     inline node_map_t::iterator children_begin();
     inline node_map_t::iterator children_end();
 
@@ -61,8 +61,8 @@ public:
     static inline node_derived* cast(weak_node_ptr node);
 
     // Messages
-    void add_message(std::string name, message_ptr message) throw (ims::exception);
-    message_ptr find_message(std::string name) throw (ims::exception);
+    void add_message(std::string name, message_ptr message) MAYTHROWIMSEXCEPTION;
+    message_ptr find_message(std::string name) MAYTHROWIMSEXCEPTION;
     inline message_map_t::iterator messages_begin();
     inline message_map_t::iterator messages_end();
 

@@ -38,23 +38,23 @@ public:
                          port_weak_ptr            port);
 
     virtual void init_data(const char* data,
-                           uint32_t    size) throw(ims::exception);
+                           uint32_t    size) MAYTHROWIMSEXCEPTION;
 
     // API implementation
     virtual ims_return_code_t push_queuing(const char* message_addr,
                                            uint32_t    message_size)
-    throw(ims::exception);
+    MAYTHROWIMSEXCEPTION;
 
 
     virtual ims_return_code_t pop_queuing(char*     message_addr,
                                           uint32_t* message_size)
-    throw(ims::exception);
+    MAYTHROWIMSEXCEPTION;
 
     virtual ims_return_code_t queuing_pending(uint32_t* count)
-    throw(ims::exception);
+    MAYTHROWIMSEXCEPTION;
 
     virtual ims_return_code_t reset()
-    throw(ims::exception);
+    MAYTHROWIMSEXCEPTION;
 
     virtual bool check(ims_protocol_t   protocol,
                        uint32_t         max_size,
@@ -64,10 +64,10 @@ public:
     uint32_t get_data(char      *data,
                       uint32_t  max_size,
                       uint32_t  queue_index=0)
-    throw(ims::exception);
+    MAYTHROWIMSEXCEPTION;
 
-    inline ims_return_code_t get_max_size(uint32_t* max_size) throw(ims::exception);
-    inline ims_return_code_t get_depth(uint32_t* depth) throw(ims::exception);
+    inline ims_return_code_t get_max_size(uint32_t* max_size) MAYTHROWIMSEXCEPTION;
+    inline ims_return_code_t get_depth(uint32_t* depth) MAYTHROWIMSEXCEPTION;
 
     // Accessors
     inline uint32_t get_max_size() { return _max_size; }
@@ -82,13 +82,13 @@ private:
 //***************************************************************************
 // Inlines
 //***************************************************************************
-ims_return_code_t message_queuing_afdx::get_max_size(uint32_t* max_size) throw(ims::exception)
+ims_return_code_t message_queuing_afdx::get_max_size(uint32_t* max_size) MAYTHROWIMSEXCEPTION
 {
     *max_size = _max_size;
     return ims_no_error;
 }
 
-ims_return_code_t message_queuing_afdx::get_depth(uint32_t* depth) throw(ims::exception)
+ims_return_code_t message_queuing_afdx::get_depth(uint32_t* depth) MAYTHROWIMSEXCEPTION
 {
     *depth = _queue_depth;
     return ims_no_error;

@@ -28,7 +28,7 @@ namespace vistas
   // Call original message for all action
   //
   ims_return_code_t message_wrapper::reset()
-      throw(ims::exception)
+      MAYTHROWIMSEXCEPTION
   {
     return _original->reset();
   }
@@ -41,7 +41,7 @@ namespace vistas
     return _original->check(protocol, max_size, depth, direction);
   }
 
-  void message_wrapper::init_data(const char* data,  uint32_t    size) throw(ims::exception)
+  void message_wrapper::init_data(const char* data,  uint32_t    size) MAYTHROWIMSEXCEPTION
   {
     return _original->init_data(data, size);
   }
@@ -49,7 +49,7 @@ namespace vistas
 
   ims_return_code_t message_wrapper::write_sampling(const char* message_addr, 
                                            uint32_t    message_size)
-    throw(ims::exception)
+    MAYTHROWIMSEXCEPTION
   {
     return _original->write_sampling(message_addr, message_size);
   }
@@ -57,21 +57,21 @@ namespace vistas
   ims_return_code_t message_wrapper::read_sampling(char*           message_addr,
                                           uint32_t*       message_size,
                                           ims_validity_t* message_validity)
-    throw(ims::exception)
+    MAYTHROWIMSEXCEPTION
   {
     return _original->read_sampling(message_addr, message_size, message_validity);
   }
 
   ims_return_code_t message_wrapper::push_queuing(const char* message_addr, 
                                          uint32_t    message_size)
-    throw(ims::exception)
+    MAYTHROWIMSEXCEPTION
   {
     return _original->push_queuing(message_addr, message_size);
   }
 
   ims_return_code_t message_wrapper::pop_queuing(char*     message_addr, 
                                         uint32_t* message_size)
-    throw(ims::exception)
+    MAYTHROWIMSEXCEPTION
   {
     return _original->pop_queuing(message_addr, message_size);
   }
@@ -79,7 +79,7 @@ namespace vistas
 
   ims_return_code_t message_wrapper::write_nad(const char* message_addr, 
                                       uint32_t    message_size)
-    throw(ims::exception)
+    MAYTHROWIMSEXCEPTION
   {
     return _original->write_nad(message_addr, message_size);
   }
@@ -87,27 +87,27 @@ namespace vistas
   ims_return_code_t message_wrapper::read_nad(char*           message_addr,
                                      uint32_t*       message_size,
                                      ims_validity_t* message_validity)
-    throw(ims::exception)
+    MAYTHROWIMSEXCEPTION
   {
     return _original->read_nad(message_addr, message_size, message_validity);
   }
 
 
   ims_return_code_t message_wrapper::get_max_size(uint32_t* max_size)
-    throw(ims::exception)
+    MAYTHROWIMSEXCEPTION
   {
     return _original->get_max_size(max_size);
   }
 
 
   ims_return_code_t message_wrapper::set_validity_duration(uint32_t validity_duration_us)
-    throw(ims::exception)
+    MAYTHROWIMSEXCEPTION
   {
     return _original->set_validity_duration(validity_duration_us);
   }
 
   ims_return_code_t message_wrapper::get_validity_duration(uint32_t* validity_duration_us)
-    throw(ims::exception)
+    MAYTHROWIMSEXCEPTION
   {
     return _original->get_validity_duration(validity_duration_us);
   }
@@ -115,26 +115,26 @@ namespace vistas
   uint32_t message_wrapper::get_data(char      *data,
                             uint32_t  max_size,
                             uint32_t  queue_index )
-    throw(ims::exception)
+    MAYTHROWIMSEXCEPTION
   {
     return _original->get_data(data, max_size, queue_index);
   }
 
 
   ims_return_code_t message_wrapper::invalidate()
-    throw(ims::exception)
+    MAYTHROWIMSEXCEPTION
   {
     return _original->invalidate();
   }
 
   ims_return_code_t message_wrapper::queuing_pending(uint32_t* count)
-    throw(ims::exception)
+    MAYTHROWIMSEXCEPTION
   {
     return _original->queuing_pending(count);
   }
     
   ims_return_code_t message_wrapper::get_depth(uint32_t* depth)
-    throw(ims::exception)
+    MAYTHROWIMSEXCEPTION
   {
     return _original->get_depth(depth);
   }

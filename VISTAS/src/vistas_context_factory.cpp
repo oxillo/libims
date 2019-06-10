@@ -959,7 +959,7 @@ backend::context_ptr context::factory::build()
 //
 // Main Ctor
 //
-context::factory::factory(const char* vistas_config_file_path) throw(ims::exception) :
+context::factory::factory(const char* vistas_config_file_path) MAYTHROWIMSEXCEPTION :
     _context(new context())
 {
 #ifdef _WIN32

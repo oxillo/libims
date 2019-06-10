@@ -43,35 +43,35 @@ public:
                 uint32_t              nad_dim2);
 
     virtual void init_data(const char* data,
-                           uint32_t    size) throw(ims::exception);
+                           uint32_t    size) MAYTHROWIMSEXCEPTION;
 
     // API implementation
     virtual ims_return_code_t write_nad(const char* message_addr,
                                         uint32_t    message_size)
-    throw(ims::exception);
+    MAYTHROWIMSEXCEPTION;
 
     virtual ims_return_code_t read_nad(char*           message_addr,
                                        uint32_t*       message_size,
                                        ims_validity_t* message_validity)
-    throw(ims::exception);
+    MAYTHROWIMSEXCEPTION;
 
     inline virtual uint32_t get_data(char       *data,
                                      uint32_t   max_size,
                                      uint32_t   queue_index = 0)
-    throw(ims::exception);
+    MAYTHROWIMSEXCEPTION;
 
     virtual ims_return_code_t reset()
-    throw(ims::exception);
+    MAYTHROWIMSEXCEPTION;
 
     virtual bool check(ims_protocol_t   protocol,
                        uint32_t         max_size,
                        uint32_t         depth,
                        ims_direction_t  direction);
 
-    inline ims_return_code_t get_max_size(uint32_t* max_size) throw(ims::exception);
+    inline ims_return_code_t get_max_size(uint32_t* max_size) MAYTHROWIMSEXCEPTION;
     inline ims_return_code_t get_data(char     *message_addr,
                                       uint32_t *message_size)
-    throw(ims::exception);
+    MAYTHROWIMSEXCEPTION;
 
 private:
     friend class port_nad;   // nad port can directly fill data
@@ -84,7 +84,7 @@ private:
 //***************************************************************************
 // Inlines
 //***************************************************************************
-ims_return_code_t message_nad::get_max_size(uint32_t* max_size) throw(ims::exception)
+ims_return_code_t message_nad::get_max_size(uint32_t* max_size) MAYTHROWIMSEXCEPTION
 {
     *max_size = _size;
     return ims_no_error;
@@ -93,7 +93,7 @@ ims_return_code_t message_nad::get_max_size(uint32_t* max_size) throw(ims::excep
 uint32_t message_nad::get_data(char       *data,
                                uint32_t   max_size,
                                uint32_t   queue_index)
-throw(ims::exception)
+MAYTHROWIMSEXCEPTION
 {
     if(queue_index != 0){
         THROW_IMS_ERROR(ims_message_invalid_size, "Message is not a queuing one. Queue index should be nul.");

@@ -68,7 +68,7 @@ std::string ims_init_parser::convertHexaToBuffer(std::string text_value)
     return hexa_string;
 }
 
-void ims_init_parser::load_and_validate(const char* xml_file_path) throw(ims::exception)
+void ims_init_parser::load_and_validate(const char* xml_file_path) MAYTHROWIMSEXCEPTION
 {
 
 

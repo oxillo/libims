@@ -57,7 +57,7 @@ message_analogue::message_analogue(context_weak_ptr context,
 }
 
 void message_analogue::init_data(const char* data,
-                                 uint32_t size) throw(ims::exception)
+                                 uint32_t size) MAYTHROWIMSEXCEPTION
 {
     if (size == sizeof(float) )
     {
@@ -78,14 +78,14 @@ void message_analogue::init_data(const char* data,
 // Time/validity handling
 //
 ims_return_code_t message_analogue::set_validity_duration(uint32_t validity_duration_us)
-throw(ims::exception)
+MAYTHROWIMSEXCEPTION
 {
     _validity_duration_us = validity_duration_us;
     return ims_no_error;
 }
 
 ims_return_code_t message_analogue::get_validity_duration(uint32_t* validity_duration_us)
-throw(ims::exception)
+MAYTHROWIMSEXCEPTION
 {
     *validity_duration_us = _validity_duration_us;
     return ims_no_error;
@@ -97,7 +97,7 @@ throw(ims::exception)
 //
 ims_return_code_t message_analogue::write_sampling(const char* message_addr,
                                                    uint32_t    message_size)
-throw(ims::exception)
+MAYTHROWIMSEXCEPTION
 {
     if (get_direction() == ims_input) {
         THROW_IMS_ERROR(ims_invalid_configuration,
@@ -126,7 +126,7 @@ throw(ims::exception)
 ims_return_code_t message_analogue::read_sampling(char*           message_addr,
                                                   uint32_t*       message_size,
                                                   ims_validity_t* message_validity)
-throw(ims::exception)
+MAYTHROWIMSEXCEPTION
 {
     if (get_direction() == ims_output) {
         THROW_IMS_ERROR(ims_invalid_configuration,
@@ -170,7 +170,7 @@ throw(ims::exception)
 // Reset this message
 //
 ims_return_code_t message_analogue::reset()
-throw(ims::exception)
+MAYTHROWIMSEXCEPTION
 {
     _has_data = false;
     _data = _init_data;
@@ -182,7 +182,7 @@ throw(ims::exception)
 // Invalidate this message
 //
 ims_return_code_t message_analogue::invalidate()
-throw(ims::exception)
+MAYTHROWIMSEXCEPTION
 {
     _data_time_us = INVALID_DATE;
     return ims_no_error;

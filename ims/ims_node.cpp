@@ -21,7 +21,7 @@ namespace ims
 //
 // Add a new child
 //
-void node::add_child(node_ptr child) throw (ims::exception)
+void node::add_child(node_ptr child) MAYTHROWIMSEXCEPTION
 {
     if (_children.find(child->get_name()) != _children.end()) {
         THROW_IMS_ERROR(ims_init_failure, "Node '" << child->get_name() <<
@@ -34,7 +34,7 @@ void node::add_child(node_ptr child) throw (ims::exception)
 //
 // Look for a child
 //
-node_ptr node::find_child(std::string name) throw (ims::exception)
+node_ptr node::find_child(std::string name) MAYTHROWIMSEXCEPTION
 {
     node_map_t::iterator it = _children.find(name);
     if (it == _children.end()) {
@@ -49,7 +49,7 @@ node_ptr node::find_child(std::string name) throw (ims::exception)
 // Add a new message
 //
 void node::add_message(std::string name, message_ptr message)
-throw (ims::exception)
+MAYTHROWIMSEXCEPTION
 {
     if (_messages.find(name) != _messages.end()) {
         THROW_IMS_ERROR(ims_init_failure, "Message '" << name <<
@@ -63,7 +63,7 @@ throw (ims::exception)
 // Look for a message
 //
 message_ptr node::find_message(std::string name)
-throw (ims::exception)
+MAYTHROWIMSEXCEPTION
 {
     message_map_t::iterator it = _messages.find(name);
     if (it == _messages.end()) {

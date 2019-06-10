@@ -53,7 +53,7 @@ public:
     virtual bool is_periodic_output() { return _socket->get_address()->get_direction() == ims_output; }
     
     // "ims_reset_all" also resets the simulation time, so we must reset our date of next send
-    virtual ims_return_code_t reset_messages() throw(ims::exception)
+    virtual ims_return_code_t reset_messages() MAYTHROWIMSEXCEPTION
     {
         _send_next_date_us = 0;
 

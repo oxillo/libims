@@ -25,27 +25,27 @@ namespace vistas
   class socket_tcp_message : public socket
   {
   public:
-    socket_tcp_message(socket_address_ptr address) throw(ims::exception);
+    socket_tcp_message(socket_address_ptr address) MAYTHROWIMSEXCEPTION;
 
     // Receive from the socket
     uint32_t receive(char* buffer, uint32_t buffer_size, client* client = NULL)
-      throw(ims::exception);
+      MAYTHROWIMSEXCEPTION;
     
     // Write to the socket
     void send(const char* buffer, uint32_t size)
-      throw(ims::exception);
+      MAYTHROWIMSEXCEPTION;
     
     // Reply to the emmiter : not implemented
     void reply(client& client, const char* buffer, uint32_t size) 
-      throw(ims::exception);
+      MAYTHROWIMSEXCEPTION;
     
     // Receive a VISTAS packet from the socket
     uint32_t receive_packet(char* buffer, uint32_t buffer_size)
-      throw(ims::exception);
+      MAYTHROWIMSEXCEPTION;
     
     // Set the socket to blocking
     void set_blocking(bool blocking)
-      throw(ims::exception);
+      MAYTHROWIMSEXCEPTION;
   };
 
 }

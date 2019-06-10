@@ -43,7 +43,7 @@ message_queuing_a429::message_queuing_a429(context_weak_ptr context,
 //
 ims_return_code_t message_queuing_a429::push_queuing(const char* message_addr,
                                                      uint32_t    message_size)
-throw(ims::exception)
+MAYTHROWIMSEXCEPTION
 {
     if (get_direction() == ims_input) {
         THROW_IMS_ERROR(ims_invalid_configuration,
@@ -85,7 +85,7 @@ throw(ims::exception)
 //
 ims_return_code_t message_queuing_a429::pop_queuing(char*     message_addr,
                                                     uint32_t* message_size)
-throw(ims::exception)
+MAYTHROWIMSEXCEPTION
 {
     if (get_direction() == ims_output) {
         THROW_IMS_ERROR(ims_invalid_configuration,
@@ -167,7 +167,7 @@ uint32_t message_queuing_a429::pop(char* message, uint32_t message_max_size)
 // Reset this message
 //
 ims_return_code_t message_queuing_a429::reset()
-throw(ims::exception)
+MAYTHROWIMSEXCEPTION
 {
     memset(_data, 0, _max_size);
     _data_size = 0;
@@ -179,7 +179,7 @@ throw(ims::exception)
 // Pending count
 //
 ims_return_code_t message_queuing_a429::queuing_pending(uint32_t* count)
-throw(ims::exception)
+MAYTHROWIMSEXCEPTION
 {
     *count = _data_size / 4;
     return ims_no_error;

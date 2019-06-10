@@ -39,14 +39,14 @@ public:
     // API implementation
     virtual ims_return_code_t push_queuing(const char* message_addr,
                                            uint32_t    message_size)
-    throw(ims::exception);
+    MAYTHROWIMSEXCEPTION;
 
     virtual ims_return_code_t pop_queuing(char*     message_addr,
                                           uint32_t* message_size)
-    throw(ims::exception);
+    MAYTHROWIMSEXCEPTION;
 
     virtual ims_return_code_t reset()
-    throw(ims::exception);
+    MAYTHROWIMSEXCEPTION;
 
     virtual bool check(ims_protocol_t   protocol,
                        uint32_t         max_size,
@@ -56,10 +56,10 @@ public:
     inline virtual uint32_t get_data(char       *data,
                                      uint32_t   max_size,
                                      uint32_t   queue_index = 0)
-    throw(ims::exception);
+    MAYTHROWIMSEXCEPTION;
 
     virtual ims_return_code_t queuing_pending(uint32_t* count)
-    throw(ims::exception);
+    MAYTHROWIMSEXCEPTION;
 
     // Message buffer implementation
     void port_set_data(const char* data, uint32_t size);
@@ -81,7 +81,7 @@ private:
 inline uint32_t message_queuing_a429::get_data(char       *data,
                                                uint32_t   max_size,
                                                uint32_t   queue_index)
-throw(ims::exception)
+MAYTHROWIMSEXCEPTION
 {
     if(max_size < A429_LABEL_SIZE){
         THROW_IMS_ERROR(ims_message_invalid_size, "Buffer size " << max_size << " is too small to contain " << A429_LABEL_SIZE << " bytes !");

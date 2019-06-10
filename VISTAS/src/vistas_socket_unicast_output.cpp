@@ -27,7 +27,7 @@ static const __attribute__((__unused__)) int zero = 0;
 static const __attribute__((__unused__)) int one = 1;
 
 void socket_unicast_output::create(socket_address_ptr address)
-throw(ims::exception)
+MAYTHROWIMSEXCEPTION
 {
     socket::create(address, SOCK_DGRAM);
 
@@ -57,7 +57,7 @@ throw(ims::exception)
 uint32_t socket_unicast_output::receive(__attribute__((__unused__)) char* buffer,
                                         __attribute__((__unused__)) uint32_t buffer_size,
                                         __attribute__((__unused__)) client* client)
-throw(ims::exception)
+MAYTHROWIMSEXCEPTION
 {
     THROW_IMS_ERROR(ims_invalid_configuration, to_string() << ": We can't receive from an output socket!");
 }
@@ -66,7 +66,7 @@ throw(ims::exception)
 // Write to the socket
 //
 void socket_unicast_output::send(const char* buffer, uint32_t size)
-throw(ims::exception)
+MAYTHROWIMSEXCEPTION
 {
 #ifdef ENABLE_INSTRUMENTATION
     // Call handler
@@ -91,7 +91,7 @@ throw(ims::exception)
 void socket_unicast_output::reply(__attribute__((__unused__)) client& client,
                                   __attribute__((__unused__)) const char* buffer,
                                   __attribute__((__unused__)) uint32_t size)
-throw(ims::exception)
+MAYTHROWIMSEXCEPTION
 {
     THROW_IMS_ERROR(ims_invalid_configuration, to_string() << ": We can't reply from an output socket!");
 }

@@ -18,6 +18,7 @@
 #include "ims_message.hh"
 #include "vistas_context.hh"
 
+
 namespace vistas 
 {
 class message : public ims::message

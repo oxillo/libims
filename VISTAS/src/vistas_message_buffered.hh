@@ -43,7 +43,7 @@ namespace vistas
 
     inline ~message_buffered();
 
-    inline void init_data(const char* data, uint32_t size) throw(ims::exception);
+    inline void init_data(const char* data, uint32_t size) MAYTHROWIMSEXCEPTION;
 
     // Direct access
     inline char*    get_data()                   { return _data;      }
@@ -53,11 +53,11 @@ namespace vistas
 
     // API implementation
     inline ims_return_code_t get_max_size(uint32_t* max_size)
-      throw(ims::exception);
+      MAYTHROWIMSEXCEPTION;
     inline virtual uint32_t get_data(char       *data,
                                      uint32_t   max_size,
                                      uint32_t   queue_index = 0)
-      throw(ims::exception);
+      MAYTHROWIMSEXCEPTION;
 
 
     //*********************************************************************
@@ -129,7 +129,7 @@ namespace vistas
   }
 
 
-  void message_buffered::init_data(const char* data, uint32_t size) throw(ims::exception)
+  void message_buffered::init_data(const char* data, uint32_t size) MAYTHROWIMSEXCEPTION
   {
     _init_data = new char[size];
     _init_size = size;
@@ -152,7 +152,7 @@ namespace vistas
   }
 
   ims_return_code_t message_buffered::get_max_size(uint32_t* max_size) 
-    throw(ims::exception)
+    MAYTHROWIMSEXCEPTION
   {
     *max_size = _max_size;
     return ims_no_error;
@@ -161,7 +161,7 @@ namespace vistas
   inline uint32_t message_buffered::get_data(char       *data,
                                              uint32_t   max_size,
                                              uint32_t   queue_index)
-    throw(ims::exception)
+    MAYTHROWIMSEXCEPTION
   {
       if(queue_index != 0){
           THROW_IMS_ERROR(ims_message_invalid_size, "Message is not a queuing one. Queue index should be nul.");

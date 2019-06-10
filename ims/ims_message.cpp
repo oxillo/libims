@@ -24,7 +24,7 @@ namespace ims
  *********************/
 ims_return_code_t message::write_sampling(__attribute__((__unused__)) const char* message_addr,
                                           __attribute__((__unused__)) uint32_t    message_size)
-throw(ims::exception)
+MAYTHROWIMSEXCEPTION
 {
     if (_direction == ims_input) {
         THROW_IMS_ERROR(ims_invalid_configuration,
@@ -49,7 +49,7 @@ throw(ims::exception)
 ims_return_code_t message::read_sampling(__attribute__((__unused__)) char*           message_addr,
                                          __attribute__((__unused__)) uint32_t*       message_size,
                                          __attribute__((__unused__)) ims_validity_t* message_validity)
-throw(ims::exception)
+MAYTHROWIMSEXCEPTION
 {
     if (_direction == ims_output) {
         THROW_IMS_ERROR(ims_invalid_configuration,
@@ -72,7 +72,7 @@ throw(ims::exception)
 
 ims_return_code_t message::push_queuing(__attribute__((__unused__)) const char* message_addr,
                                         __attribute__((__unused__)) uint32_t    message_size)
-throw(ims::exception)
+MAYTHROWIMSEXCEPTION
 {
     if (_direction == ims_input) {
         THROW_IMS_ERROR(ims_invalid_configuration,
@@ -95,7 +95,7 @@ throw(ims::exception)
 
 ims_return_code_t message::pop_queuing(__attribute__((__unused__)) char*     message_addr,
                                        __attribute__((__unused__)) uint32_t* message_size)
-throw(ims::exception)
+MAYTHROWIMSEXCEPTION
 {
     if (_direction == ims_output) {
         THROW_IMS_ERROR(ims_invalid_configuration,
@@ -117,21 +117,21 @@ throw(ims::exception)
 }
 
 ims_return_code_t message::get_max_size(__attribute__((__unused__)) uint32_t* max_size)
-throw(ims::exception)
+MAYTHROWIMSEXCEPTION
 {
     THROW_IMS_ERROR(ims_implementation_specific_error,
                     "Cannot get max size on message " << get_name() << " (internal error).");
 }
 
 ims_return_code_t message::set_validity_duration(__attribute__((__unused__)) uint32_t validity_duration_us)
-throw(ims::exception)
+MAYTHROWIMSEXCEPTION
 {
     THROW_IMS_ERROR(ims_invalid_configuration,
                     "This message has no validity duration (it never get invalid).");
 }
 
 ims_return_code_t message::get_validity_duration(__attribute__((__unused__)) uint32_t* validity_duration_us)
-throw(ims::exception)
+MAYTHROWIMSEXCEPTION
 {
     THROW_IMS_ERROR(ims_invalid_configuration,
                     "This message has no validity duration (it never get invalid).");
@@ -140,14 +140,14 @@ throw(ims::exception)
 uint32_t message::get_data(__attribute__((__unused__)) char       *data,
                            __attribute__((__unused__)) uint32_t   max_size,
                            __attribute__((__unused__)) uint32_t   queue_index)
-throw(ims::exception)
+MAYTHROWIMSEXCEPTION
 {
     THROW_IMS_ERROR(ims_invalid_configuration,
                     "Cannot retrieve message data.");
 }
 
 ims_return_code_t message::invalidate()
-throw(ims::exception)
+MAYTHROWIMSEXCEPTION
 {
     if (_mode == ims_queuing) {
         THROW_IMS_ERROR(ims_invalid_configuration,
@@ -159,7 +159,7 @@ throw(ims::exception)
 }
 
 ims_return_code_t message::queuing_pending(__attribute__((__unused__)) uint32_t* count)
-throw(ims::exception)
+MAYTHROWIMSEXCEPTION
 {
     if (_mode == ims_sampling) {
         THROW_IMS_ERROR(ims_invalid_configuration,
@@ -173,21 +173,21 @@ throw(ims::exception)
 }
 
 ims_return_code_t message::get_depth(uint32_t* depth)
-throw(ims::exception)
+MAYTHROWIMSEXCEPTION
 {
     *depth = 1;
     return ims_no_error;
 }
 
 ims_return_code_t message::set_id(__attribute__((__unused__)) const uint32_t pId)
-throw(ims::exception)
+MAYTHROWIMSEXCEPTION
 {
 	THROW_IMS_ERROR(ims_implementation_specific_error,
                         "Cannot set id for the message " << get_name() << " !");
 }
 
 ims_return_code_t message::set_name(const std::string pName)
-throw(ims::exception)
+MAYTHROWIMSEXCEPTION
 {
 	this->_name = pName; 
 	return ims_no_error; 
@@ -195,7 +195,7 @@ throw(ims::exception)
 
 ims_return_code_t message::write_nad(__attribute__((__unused__)) const char* message_addr,
                                      __attribute__((__unused__)) uint32_t    message_size)
-throw(ims::exception)
+MAYTHROWIMSEXCEPTION
 {
     if (_direction == ims_input) {
         THROW_IMS_ERROR(ims_invalid_configuration,
@@ -220,7 +220,7 @@ throw(ims::exception)
 ims_return_code_t message::read_nad(__attribute__((__unused__)) char*           message_addr,
                                     __attribute__((__unused__)) uint32_t*       message_size,
                                     __attribute__((__unused__)) ims_validity_t* message_validity)
-throw(ims::exception)
+MAYTHROWIMSEXCEPTION
 {
     if (_direction == ims_output) {
         THROW_IMS_ERROR(ims_invalid_configuration,

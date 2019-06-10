@@ -57,7 +57,7 @@ port_ptr socket_pool::factory::find(socket_address_ptr address)
 void socket_pool::factory::add(socket_ptr socket,
                                port_ptr   port,
                                std::string channel_name)
-throw (ims::exception)
+MAYTHROWIMSEXCEPTION
 {
     if (socket == NULL) {
         THROW_IMS_ERROR(ims_init_failure, "Cannot add a null socket!");

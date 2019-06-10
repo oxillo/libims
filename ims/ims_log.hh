@@ -18,6 +18,12 @@
 #define _IMS_LOG_HH_
 #include "ims.h"
 #include <exception>
+#if __cplusplus >= 201103L
+  #define MAYTHROWIMSEXCEPTION noexcept(false)
+#else
+  #define MAYTHROWIMSEXCEPTION throw(ims::exception)
+#endif
+
 #include <ostream>
 
 namespace ims {

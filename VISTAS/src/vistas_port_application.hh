@@ -31,11 +31,11 @@ public:
 
     // Reset all messages of this port
     virtual ims_return_code_t reset_messages()
-    throw(ims::exception) = 0;
+    MAYTHROWIMSEXCEPTION = 0;
 
     // Invalidate all messages of this port
     virtual ims_return_code_t invalidate_messages()
-    throw(ims::exception) = 0;
+    MAYTHROWIMSEXCEPTION = 0;
 
     // Return port protocol
     virtual ims_protocol_t get_protocol() = 0;
@@ -75,11 +75,11 @@ public:
 
     // Reset all messages of this port
     virtual ims_return_code_t reset_messages()
-    throw(ims::exception);
+    MAYTHROWIMSEXCEPTION;
 
     // Invalidate all messages of this port
     ims_return_code_t invalidate_messages()
-    throw(ims::exception);
+    MAYTHROWIMSEXCEPTION;
 
 
 protected:
@@ -99,7 +99,7 @@ port_application<message_t>::port_application(context_weak_ptr context, socket_p
 
 template <typename message_t>
 ims_return_code_t port_application<message_t>::reset_messages()
-throw(ims::exception)
+MAYTHROWIMSEXCEPTION
 {
     ims_return_code_t result = ims_no_error;
     
@@ -117,7 +117,7 @@ throw(ims::exception)
 
 template <typename message_t>
 ims_return_code_t port_application<message_t>::invalidate_messages()
-throw(ims::exception)
+MAYTHROWIMSEXCEPTION
 {
     ims_return_code_t result = ims_no_error;
 

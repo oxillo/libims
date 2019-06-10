@@ -31,7 +31,7 @@ static const __attribute__((__unused__)) int one = 1;
 // Initialize a socket
 //
 void socket::create(socket_address_ptr address, int socket_type)
-throw(ims::exception)
+MAYTHROWIMSEXCEPTION
 {
     if (_sock != INVALID_SOCKET) {
         THROW_IMS_ERROR(ims_init_failure, "Trying to initialize an already initialied socket!");

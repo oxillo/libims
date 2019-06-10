@@ -27,7 +27,7 @@ static const __attribute__((__unused__)) int zero = 0;
 static const __attribute__((__unused__)) int one = 1;
 
 void socket_multicast_input::create(socket_address_ptr address)
-throw(ims::exception)
+MAYTHROWIMSEXCEPTION
 {
     socket::create(address, SOCK_DGRAM);
 
@@ -65,7 +65,7 @@ throw(ims::exception)
 // Receive from the socket
 //
 uint32_t socket_multicast_input::receive(char* buffer, uint32_t buffer_size, client* client)
-throw(ims::exception)
+MAYTHROWIMSEXCEPTION
 {
     int res;
     if (client) {
@@ -101,7 +101,7 @@ throw(ims::exception)
 //
 void socket_multicast_input::send(__attribute__((__unused__)) const char* buffer,
                                   __attribute__((__unused__)) uint32_t size)
-throw(ims::exception)
+MAYTHROWIMSEXCEPTION
 {
     THROW_IMS_ERROR(ims_invalid_configuration, to_string() << ": Cannot send an input socket!");
 }
@@ -110,7 +110,7 @@ throw(ims::exception)
 // Reply to the emmiter
 //
 void socket_multicast_input::reply(client& client, const char* buffer, uint32_t size)
-throw(ims::exception)
+MAYTHROWIMSEXCEPTION
 {
     socklen_t socklen = sizeof(client.saddr);
 

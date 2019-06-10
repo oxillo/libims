@@ -49,7 +49,7 @@ message_sampling::message_sampling(context_weak_ptr context,
 //
 ims_return_code_t message_sampling::write_sampling(const char* message_addr,
                                                    uint32_t    message_size)
-throw(ims::exception)
+MAYTHROWIMSEXCEPTION
 {
     LOG_DEBUG("Write " << message_size << " bytes on sampling message " << get_name());
 
@@ -85,7 +85,7 @@ throw(ims::exception)
 ims_return_code_t message_sampling::read_sampling(char*           message_addr,
                                                   uint32_t*       message_size,
                                                   ims_validity_t* message_validity)
-throw(ims::exception)
+MAYTHROWIMSEXCEPTION
 {
     LOG_DEBUG("Read sampling message " << get_name() << " ...");
 
@@ -137,14 +137,14 @@ throw(ims::exception)
 // Time/validity handling
 //
 ims_return_code_t message_sampling::set_validity_duration(uint32_t validity_duration_us)
-throw(ims::exception)
+MAYTHROWIMSEXCEPTION
 {
     _validity_duration_us = validity_duration_us;
     return ims_no_error;
 }
 
 ims_return_code_t message_sampling::get_validity_duration(uint32_t* validity_duration_us)
-throw(ims::exception)
+MAYTHROWIMSEXCEPTION
 {
     *validity_duration_us = _validity_duration_us;
     return ims_no_error;
@@ -154,7 +154,7 @@ throw(ims::exception)
 // Reset this message
 //
 ims_return_code_t message_sampling::reset()
-throw(ims::exception)
+MAYTHROWIMSEXCEPTION
 {
     memset(_data, 0, _max_size);
     _data_size = 0;
@@ -166,7 +166,7 @@ throw(ims::exception)
 // Invalidate this message
 //
 ims_return_code_t message_sampling::invalidate()
-throw(ims::exception)
+MAYTHROWIMSEXCEPTION
 {
     _data_time_us = INVALID_DATE;
     return ims_no_error;

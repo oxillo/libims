@@ -66,15 +66,15 @@ public:
     // @return The size effectively read
     // If client is provided, it will be filled with emmiter information
     virtual uint32_t receive(char* buffer, uint32_t buffer_size, client* client = NULL)
-    throw(ims::exception) = 0;
+    MAYTHROWIMSEXCEPTION = 0;
 
     // Write to the socket
     virtual void send(const char* buffer, uint32_t size)
-    throw(ims::exception) = 0;
+    MAYTHROWIMSEXCEPTION = 0;
 
     // Reply to the emmiter
     virtual void reply(client& client, const char* buffer, uint32_t size)
-    throw(ims::exception) = 0;
+    MAYTHROWIMSEXCEPTION = 0;
 
     // DTor: close the socket
     virtual ~socket();
@@ -101,7 +101,7 @@ protected:
     // - Initialize the _sock member
     // - Fill _address member
     void create(socket_address_ptr address, int socket_type)
-    throw(ims::exception);
+    MAYTHROWIMSEXCEPTION;
 
     // Deinitialize the socket
     void close();

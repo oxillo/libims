@@ -23,16 +23,16 @@ class socket_void : public socket
     inline uint32_t receive(__attribute__((__unused__)) char* buffer,
                             __attribute__((__unused__)) uint32_t buffer_size,
                             __attribute__((__unused__)) client* client = NULL)
-    throw(ims::exception) { return 0; }
+    MAYTHROWIMSEXCEPTION { return 0; }
 
     inline void send(__attribute__((__unused__)) const char* buffer,
                      __attribute__((__unused__)) uint32_t size)
-    throw(ims::exception) { }
+    MAYTHROWIMSEXCEPTION { }
 
     inline void reply(__attribute__((__unused__)) client& client,
                       __attribute__((__unused__)) const char* buffer,
                       __attribute__((__unused__)) uint32_t size)
-    throw(ims::exception) { }
+    MAYTHROWIMSEXCEPTION { }
 
 };
 
