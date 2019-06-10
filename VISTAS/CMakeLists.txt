@@ -29,7 +29,7 @@ _GENERATE_XSD_HEADER(${CMAKE_CURRENT_LIST_DIR}/doc vistas_config.xsd ${CMAKE_CUR
 IF(CMAKE_SYSTEM_NAME MATCHES "Linux")
     MESSAGE(STATUS "## OS [LINUX]")
     SET(CMAKE_C_FLAGS "-g -O0 -Wall -Wextra -fvisibility=hidden -fPIC -D_GNU_SOURCE")
-    SET(CMAKE_CXX_FLAGS "-g -O0 -Wall -Wextra -fvisibility=hidden -fPIC -D_GNU_SOURCE")
+    SET(CMAKE_CXX_FLAGS "-std=c++1 -g -O0 -Wall -Wextra -fvisibility=hidden -fPIC -D_GNU_SOURCE")
     IF(NOT WORDSIZE MATCHES "x86_64")
         MESSAGE(STATUS "## WS [32]")
         SET(CMAKE_C_FLAGS      "${CMAKE_C_FLAGS} -m32 -march=i686")
