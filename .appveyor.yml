@@ -12,10 +12,17 @@ environment:
     - platform: x86
       BUILDER: MSYS2
       MSYSTEM: MINGW32
+      WORDSIZE: i686
+      CCACHE_DIR: "%APPVEYOR_BUILD_FOLDER%\\.ccache"
+    - platform: x64
+      BUILDER: MSYS2
+      MSYSTEM: MINGW32
+      WORDSIZE: i686
       CCACHE_DIR: "%APPVEYOR_BUILD_FOLDER%\\.ccache"
     - platform: x64
       BUILDER: MSYS2
       MSYSTEM: MINGW64
+      WORDSIZE: x86_64
       CCACHE_DIR: "%APPVEYOR_BUILD_FOLDER%\\.ccache"
 
   #VisualStudio Building
@@ -72,17 +79,17 @@ before_build:
 - if "%BUILDER%"=="MSYS2" (%MSYS2_PATH%\usr\bin\bash -lc "cd build && cmake .. -G\"Unix Makefiles\" 
       -DCMAKE_BUILD_TYPE=${CONFIGURATION}
       -DCMAKE_INSTALL_PREFIX=${INSTALL_PATH} 
-      -DWORDSIZE=i686 
+      -DWORDSIZE=${WORDSIZE} 
       -DENABLE_DOC=1 
-      -DENABLE_TEST=1 
-      -DENABLE_INSTRUMENTATION=1 ")
+      -DENABLE_TEST=0
+      -DENABLE_INSTRUMENTATION=0 ")
 #  DENABLE_INSTRUMENTATION=${ENABLE_INSTRUMENTATION}
 #- if "%BUILDER%"=="MSYS2" (%MSYS2_PATH%\usr\bin\bash -lc "ccache -z")
 #- if "%BUILDER%"=="MSYS2" (%MSYS2_PATH%\usr\bin\bash -lc "ccache -s")
 
 build_script:
-- if "%BUILDER%"=="MSYS2" (%MSYS2_PATH%\usr\bin\bash -lc "cmake --build build --target all --config ${CONFIGURATION}")
-- ps: |
+- if "%BUILDER%"=="MSYS2" (%MSYS2_PATH%\usr\bin\bash -lc "cmake --build build --target package --config ${CONFIGURATION}")
+#- ps: |
 #    if ($env:BUILDER -eq "VS") {
 #      msbuild libs/openFrameworksCompiled/project/vs/openframeworksLib.vcxproj  /verbosity:minimal /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
 #      msbuild examples/templates/emptyExample/emptyExample.vcxproj  /verbosity:minimal /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
@@ -90,6 +97,13 @@ build_script:
 #    }
 
 before_test:
+- if "%BUILDER%"=="MSYS2" (%MSYS2_PATH%\usr\bin\bash -lc "cd build && cmake .. -G\"Unix Makefiles\" 
+      -DCMAKE_BUILD_TYPE=${CONFIGURATION}
+      -DCMAKE_INSTALL_PREFIX=${INSTALL_PATH} 
+      -DWORDSIZE=${WORDSIZE} 
+      -DENABLE_DOC=1 
+      -DENABLE_TEST=1
+      -DENABLE_INSTRUMENTATION=0 ")
 #- if "%BUILDER%"=="MSYS2" (%MSYS2_PATH%\usr\bin\bash -lc "cmake --build build --target precoverage --config ${CONFIGURATION}")
 
 test_script:
